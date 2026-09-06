@@ -1,0 +1,20 @@
+{
+  "name": "app-design-research-public",
+  "interface": {
+    "displayName": "App Design Research Public"
+  },
+  "plugins": [
+    {
+      "name": "app-design-research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/app-design-research"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

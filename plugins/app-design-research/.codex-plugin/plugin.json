@@ -1,0 +1,26 @@
+{
+  "name": "app-design-research",
+  "version": "0.1.0",
+  "description": "Portable supplied-reference app design review with disabled AppLlama network access.",
+  "author": {
+    "name": "PatchworkMD",
+    "url": "https://github.com/PatchworkMD/app-design-research"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "App Design Research",
+    "shortDescription": "Review app design references supplied by the user.",
+    "longDescription": "A skills-only portable plugin for evidence-bounded review. Archived AppLlama browser access is disabled.",
+    "developerName": "PatchworkMD",
+    "category": "Productivity",
+    "privacyPolicyURL": "https://github.com/PatchworkMD/app-design-research/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/PatchworkMD/app-design-research/blob/main/TERMS.md",
+    "defaultPrompt": [
+      "Review the supplied app design references and propose prioritized improvements."
+    ],
+    "capabilities": []
+  },
+  "homepage": "https://github.com/PatchworkMD/app-design-research",
+  "repository": "https://github.com/PatchworkMD/app-design-research",
+  "license": "MIT"
+}
