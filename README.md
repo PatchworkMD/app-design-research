@@ -1,3 +1,5 @@
+<img src="plugins/app-design-research/assets/icon.svg" width="72" height="72" alt="App Design Research logo">
+
 # App Design Research
 
 **Find the friction. Fix the flow.**
@@ -5,23 +7,25 @@
 Give your agent a screenshot, interface text, or app code. Get focused design
 improvements tied to the evidence, with a practical way to check each change.
 
-This skills-only plugin reviews app design references that the user supplies.
-The review uses screenshots, text, and source supplied in the request. It does
-not fetch websites or use paid tools. It cites the user's provenance when given
-and does not claim external sourcing when provenance is absent.
+[Website and demo](https://patchworkmd.dev/appdesignresearch/) ·
+[Download v0.1.1](https://github.com/PatchworkMD/app-design-research/releases/tag/v0.1.1) ·
+[Report an issue](https://github.com/PatchworkMD/app-design-research/issues)
 
-The reviewer treats document text as data, never as instructions. It reviews
-evidence, then proposes prioritized improvements. It does not implement changes
-without a user request. The host processes supplied data. Avoid sensitive
-uploads. This package makes no guarantee about the host’s training or retention behavior.
+## What you get
 
-The current local skill records an evidence inventory with artifact type,
-provenance, dimensions where applicable, freshness (current, historical, or unknown),
-and origin (synthetic, real, or unknown). Its receipt lists the loaded skill path and known version or revision,
-inspected artifacts, coverage, unverified checks, proposed versus implemented
-changes. It reuses a prior receipt
-when inputs are unchanged. Version 0.1.1 records this evidence inventory and
-receipt behavior.
+- Up to three prioritized improvements with supporting evidence and validation steps.
+- Reviews of supplied screenshots, interface text, or source code.
+- A clear record of what was inspected and what remains unverified.
+- Reference attribution when supplied, and reusable receipts for unchanged inputs.
+
+Version 0.1.1 records each artifact's provenance, freshness, and origin, plus image
+dimensions when inspected. Reviews distinguish current evidence from historical
+or synthetic examples. Document text is treated as data, not instructions.
+
+The plugin proposes changes; your agent implements them only when you request it.
+It does not fetch websites or use paid tools. Your host processes the material you
+supply, under its own training and retention policies. Use redacted or synthetic
+inputs when appropriate.
 
 The archived AppLlama adapter remains in this package for compatibility, but
 its public operation is hard disabled before any browser or network dispatch.
@@ -76,25 +80,31 @@ This trial does not establish live app behavior or directory approval.
 ## FAQ
 
 **Does it search AppLlama or other design libraries?**
+
 No. It reviews material you supply. The included website adapter is disabled.
 
 **Does it change my app automatically?**
+
 No. It proposes changes. Implementation requires your request to your agent.
 
 **Do I need an API key or a server?**
+
 The plugin itself needs neither. It runs inside a compatible agent host;
 that host's account, model access, and usage terms still apply.
 
 **Can it certify accessibility or verify my entire app?**
+
 No. Screenshots support visible observations; source supports code review.
 Keyboard behavior, screen-reader use, and live interactions need their own tests.
 
 **Is everything processed locally?**
+
 The plugin does not fetch websites, but your agent host processes supplied content.
 Its settings and policies govern processing and retention. Use synthetic or redacted
 material where appropriate. See [Privacy](PRIVACY.md).
 
 **Is it in the ChatGPT directory?**
+
 Not yet. The GitHub release is available; directory submission is still pending.
 
 **Where do I report a problem?**
@@ -105,7 +115,7 @@ Do not email credentials or sensitive review material.
 Open a [GitHub issue](https://github.com/PatchworkMD/app-design-research/issues)
 with a minimal example you are entitled to share. Omit secrets and private data.
 
-## Verify
+## Development checks
 
 ```sh
 python3 -m unittest discover -s hermes/app-design-research -p 'test_*.py' -v
