@@ -1,6 +1,6 @@
 # Privacy policy
 
-Effective: 2026-09-06. Applies to App Design Research v0.1.0 and v0.1.1, published by the PatchworkMD GitHub account.
+Effective: 2026-09-06. Applies to App Design Research v0.1.0 and v0.1.1, published by Austin Wise (individual), using the PatchworkMD brand and GitHub account. PatchworkMD is not a separate registered entity.
 
 ## What this package does
 
@@ -12,7 +12,7 @@ The package has no maintainer-operated server, analytics endpoint, advertising i
 
 Your AI application, its configured model provider, and any organization administering that application may process your inputs and outputs under their own settings and policies. Using a locally installed skill does not mean inference is local. The package does not promise zero retention, no model training, or a particular processing region for those providers.
 
-PatchworkMD does not receive your review content through this package. If you voluntarily open a GitHub issue or pull request, maintainers and the public can see your GitHub handle and the material you post. That information is used to respond to support requests and maintain the project. Never post confidential material, credentials, or personal screenshots in public issues.
+Austin Wise does not receive your review content through this package. If you voluntarily open a GitHub issue or pull request, maintainers and the public can see your GitHub handle and the material you post. That information is used to respond to support requests and maintain the project. Never post confidential material, credentials, or personal screenshots in public issues.
 
 ## Retention and controls
 
