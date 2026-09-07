@@ -1,6 +1,6 @@
 {
   "name": "app-design-research",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Portable supplied-reference app design review with disabled AppLlama network access.",
   "author": {
     "name": "PatchworkMD",
@@ -18,7 +18,9 @@
     "defaultPrompt": [
       "Review the supplied app design references and propose prioritized improvements."
     ],
-    "capabilities": []
+    "capabilities": [],
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.svg"
   },
   "homepage": "https://github.com/PatchworkMD/app-design-research",
   "repository": "https://github.com/PatchworkMD/app-design-research",

@@ -1,6 +1,6 @@
 # Privacy policy
 
-Effective: 2026-09-06. Applies to App Design Research v0.1.0, published by the PatchworkMD GitHub account.
+Effective: 2026-09-06. Applies to App Design Research v0.1.0 and v0.1.1, published by the PatchworkMD GitHub account.
 
 ## What this package does
 
