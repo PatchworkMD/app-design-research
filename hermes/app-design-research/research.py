@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 import time
+from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin, urlsplit
 
@@ -15,6 +17,9 @@ MAX_ACCESSIBLE_LINKS = 10
 MAX_SEARCH_POLLS = 3
 SEARCH_POLL_DELAY_SECONDS = 0.5
 DEFAULT_IMAGE_LIMIT = 6
+DEFAULT_CORPUS_LIMIT = 20
+MAX_CORPUS_LIMIT = 100
+MAX_CORPUS_FILE_BYTES = 16 * 1024 * 1024
 IMAGE_HOSTS = {"appllama.io", "cloud.appllama.io"}
 SKILLS = ["app-design-review"]
 OPERATIONS = {
@@ -28,6 +33,7 @@ OPERATIONS = {
     "search_flows": "/flows",
     "search_elements": "/elements",
     "inspect_reference": None,
+    "offline_corpus": None,
     "capabilities": None,
 }
 SEARCH_CONTROLS = {
@@ -40,7 +46,7 @@ PUBLIC_REFERENCE_PREFIXES = ("/apps/", "/screens/", "/flows/", "/elements/")
 
 TOOL_SCHEMA = {
     "name": "app_design_research",
-    "description": "Report disabled AppLlama website access. This release performs no browser operations.",
+    "description": "Query an explicitly supplied local AppLlama evidence corpus; website access stays disabled.",
     "parameters": {
         "type": "object",
         "properties": {
@@ -48,6 +54,8 @@ TOOL_SCHEMA = {
             "task": {"type": "string", "description": "Research task scope."},
             "query": {"type": "string", "description": "Research intent or browser search text."},
             "url": {"type": "string", "description": "Optional public AppLlama URL."},
+            "corpus_path": {"type": "string", "description": "Absolute path to a supplied local evidence corpus."},
+            "limit": {"type": "integer", "minimum": 1, "maximum": 100},
             "include_images": {
                 "type": "boolean",
                 "description": "Include accessible image metadata. Defaults true for inspect operations and false otherwise.",
@@ -322,6 +330,202 @@ def _capabilities() -> str:
                   "paid_mcp": False, "full_parity": False})
 
 
+def _corpus_error(message: str) -> str:
+    return _error(message, operation="offline_corpus")
+
+
+def _safe_corpus_root(value: Any) -> tuple[Path | None, str | None]:
+    if not isinstance(value, str) or not value.strip():
+        return None, "corpus_path must be a non-empty absolute path."
+    raw = value.strip()
+    candidate = Path(raw)
+    if not candidate.is_absolute() or ".." in candidate.parts:
+        return None, "corpus_path must be absolute and contain no path traversal."
+    try:
+        root = candidate.resolve(strict=True)
+    except (OSError, RuntimeError):
+        return None, "corpus_path does not resolve to a readable directory."
+    if not root.is_dir() or root.is_symlink():
+        return None, "corpus_path must resolve to a directory without symlinks."
+    current = candidate
+    while current != current.parent:
+        if current.is_symlink():
+            return None, "corpus_path cannot contain symlinked directories."
+        current = current.parent
+    return root, None
+
+
+def _read_corpus_json(root: Path, name: str) -> tuple[Any, dict[str, Any], str | None]:
+    relative = Path(name)
+    if relative.is_absolute() or ".." in relative.parts:
+        return None, {}, f"Corpus file path is invalid: {name}."
+    path = root / relative
+    if path.is_symlink() or not path.is_file():
+        return None, {}, f"Corpus is missing required file: {name}."
+    try:
+        if path.stat().st_size > MAX_CORPUS_FILE_BYTES:
+            return None, {}, f"Corpus file is too large: {name}."
+        raw = path.read_bytes()
+        value = json.loads(raw)
+    except (OSError, UnicodeDecodeError, ValueError):
+        return None, {}, f"Corpus file is not readable JSON: {name}."
+    if not isinstance(value, dict):
+        return None, {}, f"Corpus file must contain a JSON object: {name}."
+    return value, {"path": name, "sha256": hashlib.sha256(raw).hexdigest(), "byte_count": len(raw)}, None
+
+
+def _observed_revenue(text: str) -> dict[str, str]:
+    match = re.search(r"\$(?:\d+(?:\.\d+)?)(?:[KMB])?/mo\b", text)
+    if not match:
+        return {"status": "unavailable", "reason": "No explicit revenue amount exists in the supplied catalog text."}
+    return {"status": "observed", "label": match.group(0), "basis": "observed app card text"}
+
+
+def _catalog_corpus(root: Path, catalog: dict[str, Any], catalog_file: dict[str, Any],
+                    manifest: dict[str, Any] | None, manifest_file: dict[str, Any] | None,
+                    args: dict[str, Any], limit: int) -> str:
+    raw_apps = catalog.get("apps")
+    if not isinstance(raw_apps, dict) or not isinstance(catalog.get("complete"), bool):
+        return _corpus_error("The browser catalog has an unsupported schema.")
+    query = args["query"].strip().casefold()
+    apps: list[dict[str, Any]] = []
+    for path, item in raw_apps.items():
+        if not _valid_observed_app_path(path) or not isinstance(item, dict):
+            return _corpus_error("The browser catalog contains an invalid app record.")
+        url = item.get("url", ROOT + path)
+        text = item.get("text", "")
+        if not isinstance(url, str) or not isinstance(text, str):
+            return _corpus_error("The browser catalog contains an invalid app record.")
+        if query not in " ".join((path, url, text)).casefold():
+            continue
+        revenue = _observed_revenue(text)
+        apps.append({"path": path, "source_url": url, "text": text[:MAX_SNAPSHOT_CHARS],
+                     "analytics": {"revenue": revenue}})
+        if len(apps) >= limit:
+            break
+    assets: list[dict[str, Any]] = []
+    if manifest is not None:
+        raw_assets = manifest.get("assets")
+        if not isinstance(raw_assets, list):
+            return _corpus_error("assets-manifest.json has an unsupported schema.")
+        for item in raw_assets:
+            if not isinstance(item, dict):
+                return _corpus_error("assets-manifest.json contains a non-object asset.")
+            searchable = " ".join(str(item.get(key, "")) for key in ("asset_id", "kind", "name", "page", "path", "url"))
+            if query not in searchable.casefold():
+                continue
+            assets.append({key: item[key] for key in (
+                "asset_id", "kind", "name", "page", "path", "url", "source", "source_path", "status", "sha256", "byte_count"
+            ) if key in item})
+            if len(assets) >= limit:
+                break
+    observed_revenue = next((a["analytics"]["revenue"] for a in apps
+                             if a["analytics"]["revenue"]["status"] == "observed"),
+                            {"status": "unavailable", "reason": "No explicit revenue amount exists in the supplied catalog text."})
+    coverage = {"asset_observations": len(manifest.get("assets", [])) if manifest else 0,
+                "asset_files": len({x.get("sha256") for x in manifest.get("assets", [])
+                                     if isinstance(x, dict) and x.get("sha256")}) if manifest else 0,
+                "app_paths_observed": len(raw_apps), "catalog_complete": catalog["complete"],
+                "catalog_records_complete": catalog["complete"], "details_complete": False,
+                "detail_complete": False, "query_limit": limit}
+    files = [catalog_file]
+    if manifest_file:
+        files.insert(0, manifest_file)
+    flags = ["network_access_disabled", "offline_corpus_only", "details_incomplete"]
+    if observed_revenue["status"] != "observed":
+        flags.append("revenue_unavailable")
+    return _json({"operation": "offline_corpus", "access": "offline", "source_url": ROOT + "/",
+                  "query": args["query"].strip(), "assets": assets, "apps": apps,
+                  "analytics": {"revenue": observed_revenue},
+                  "catalog_complete": catalog["complete"], "details_complete": False,
+                  "provenance": {"corpus_path": str(root), "files": files, "source": "browser-catalog"},
+                  "coverage": coverage, "limitation_flags": flags, "skills": SKILLS})
+
+
+def _valid_observed_app_path(path: Any) -> bool:
+    if not isinstance(path, str) or not path.startswith("/apps/") or any(part in (".", "..") for part in path.split("/")):
+        return False
+    valid, _ = validate_url(ROOT + path, "inspect_app")
+    return valid
+
+
+def _offline_corpus(args: dict[str, Any]) -> str:
+    root, error = _safe_corpus_root(args.get("corpus_path"))
+    if error:
+        return _corpus_error(error)
+    limit = args.get("limit", DEFAULT_CORPUS_LIMIT)
+    if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= MAX_CORPUS_LIMIT:
+        return _corpus_error(f"limit must be an integer from 1 to {MAX_CORPUS_LIMIT}.")
+    catalog_path = root / "downloads" / "appllama-browser-catalog-complete.json"
+    if catalog_path.is_file() and not catalog_path.is_symlink():
+        catalog, catalog_file, error = _read_corpus_json(root, "downloads/appllama-browser-catalog-complete.json")
+        if error:
+            return _corpus_error(error)
+        manifest = manifest_file = None
+        if (root / "assets-manifest.json").exists():
+            manifest, manifest_file, error = _read_corpus_json(root, "assets-manifest.json")
+            if error:
+                return _corpus_error(error)
+        return _catalog_corpus(root, catalog, catalog_file, manifest, manifest_file, args, limit)
+    manifest, manifest_file, error = _read_corpus_json(root, "assets-manifest.json")
+    if error:
+        return _corpus_error(error)
+    observed, observed_file, error = _read_corpus_json(root, "appllama-apps-observed-20260915.json")
+    if error:
+        return _corpus_error(error)
+    if not isinstance(manifest.get("assets"), list) or not isinstance(manifest.get("schema_version"), int):
+        return _corpus_error("assets-manifest.json has an unsupported schema.")
+    if not isinstance(observed.get("source"), str) or not isinstance(observed.get("appPaths"), list):
+        return _corpus_error("The observed apps JSON has an unsupported schema.")
+    if not isinstance(observed.get("complete"), bool):
+        return _corpus_error("The observed apps JSON must declare complete as a boolean.")
+    app_paths = observed["appPaths"]
+    if any(not _valid_observed_app_path(path) for path in app_paths):
+        return _corpus_error("The observed apps JSON contains an invalid app path.")
+    observed_count = observed.get("observedApps")
+    if not isinstance(observed_count, (int, list)) or isinstance(observed_count, bool):
+        return _corpus_error("The observed apps JSON has an invalid observedApps value.")
+    if isinstance(observed_count, int) and observed_count != len(app_paths):
+        return _corpus_error("observedApps does not match appPaths coverage.")
+    query = args["query"].strip().casefold()
+    assets = []
+    for item in manifest["assets"]:
+        if not isinstance(item, dict):
+            return _corpus_error("assets-manifest.json contains a non-object asset.")
+        searchable = " ".join(str(item.get(key, "")) for key in ("asset_id", "kind", "name", "page", "path", "url"))
+        if query not in searchable.casefold():
+            continue
+        assets.append({key: item[key] for key in (
+            "asset_id", "kind", "name", "page", "path", "url", "source", "source_path", "status", "sha256", "byte_count"
+        ) if key in item})
+        if len(assets) >= limit:
+            break
+    apps = []
+    for path in app_paths:
+        if query not in path.casefold():
+            continue
+        apps.append({"path": path, "source_url": observed["source"], "analytics": {"revenue": {
+            "status": "unavailable", "reason": "No revenue field exists in the supplied observed apps JSON."
+        }}})
+        if len(apps) >= limit:
+            break
+    coverage = {
+        "asset_observations": len(manifest["assets"]),
+        "asset_files": len({item.get("sha256") for item in manifest["assets"] if isinstance(item, dict) and item.get("sha256")}),
+        "app_paths_observed": len(app_paths),
+        "apps_complete": observed["complete"],
+        "query_limit": limit,
+    }
+    return _json({
+        "operation": "offline_corpus", "access": "offline", "source_url": observed["source"],
+        "query": args["query"].strip(), "assets": assets, "apps": apps,
+        "analytics": {"revenue": {"status": "unavailable", "reason": "The supplied packet has no revenue observations."}},
+        "provenance": {"corpus_path": str(root), "files": [manifest_file, observed_file], "source": observed["source"]},
+        "coverage": coverage, "limitation_flags": ["network_access_disabled", "offline_corpus_only", "revenue_unavailable"],
+        "skills": SKILLS,
+    })
+
+
 def app_design_research(args: dict, **kwargs) -> str:
     if not isinstance(args, dict):
         return _error("Arguments must be an object.")
@@ -340,6 +544,8 @@ def app_design_research(args: dict, **kwargs) -> str:
         return _error(target, operation=operation)
     if operation == "capabilities":
         return _capabilities()
+    if operation == "offline_corpus":
+        return _offline_corpus(args)
     # Public release policy: browser and all network dispatch stay unreachable.
     return _result(operation, target, "disabled",
                    error="Public AppLlama access is disabled; written permission is required.",

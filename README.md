@@ -8,7 +8,7 @@ Give your agent a screenshot, interface text, or app code. Get focused design
 improvements tied to the evidence, with a practical way to check each change.
 
 [Website and demo](https://patchworkmd.dev/appdesignresearch/) ·
-[Download v0.1.1](https://github.com/PatchworkMD/app-design-research/releases/tag/v0.1.1) ·
+[Download v0.1.2](https://github.com/PatchworkMD/app-design-research/releases/tag/v0.1.2) ·
 [Report an issue](https://github.com/PatchworkMD/app-design-research/issues)
 
 ## What you get
@@ -17,8 +17,10 @@ improvements tied to the evidence, with a practical way to check each change.
 - Reviews of supplied screenshots, interface text, or source code.
 - A clear record of what was inspected and what remains unverified.
 - Reference attribution when supplied, and reusable receipts for unchanged inputs.
+- iPhone-focused guidance for original SwiftUI/UIKit screens, WidgetKit widgets,
+  and ActivityKit Live Activities, with exact-device runtime checks.
 
-Version 0.1.1 records each artifact's provenance, freshness, and origin, plus image
+Version 0.1.2 records each artifact's provenance, freshness, and origin, plus image
 dimensions when inspected. Reviews distinguish current evidence from historical
 or synthetic examples. Document text is treated as data, not instructions.
 
@@ -27,15 +29,22 @@ It does not fetch websites or use paid tools. Your host processes the material y
 supply, under its own training and retention policies. Use redacted or synthetic
 inputs when appropriate.
 
+The iOS workflow covers iOS targets on iPhone only. It excludes iPadOS, watchOS,
+visionOS, and macOS. Supplied Appllama research is treated as evidence;
+the documented MCP contract is local reference material, not a live integration.
+
 The archived AppLlama adapter remains in this package for compatibility, but
 its public operation is hard disabled before any browser or network dispatch.
-Valid operations return `access: "disabled"`; invalid requests are rejected.
+Website operations return `access: "disabled"`; invalid requests are rejected.
+The `offline_corpus` operation searches an explicitly supplied local archive,
+returns bounded matches and observed revenue labels, and reports catalog and
+detail coverage separately. It performs no network requests.
 Written permission is required to change that policy.
 
 ## Install in Codex
 
 ```sh
-codex plugin marketplace add PatchworkMD/app-design-research --ref v0.1.1
+codex plugin marketplace add PatchworkMD/app-design-research --ref v0.1.2
 codex plugin add app-design-research@app-design-research-public
 ```
 
@@ -81,7 +90,8 @@ This trial does not establish live app behavior or directory approval.
 
 **Does it search AppLlama or other design libraries?**
 
-No. It reviews material you supply. The included website adapter is disabled.
+It reviews material you supply and can search an explicitly supplied local
+archive with `offline_corpus`. Live website access remains disabled.
 
 **Does it change my app automatically?**
 
