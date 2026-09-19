@@ -1,14 +1,14 @@
-<img src="plugins/app-design-research/assets/icon.svg" width="72" height="72" alt="App Design Research logo">
+<img src="plugins/app-design-research/assets/icon.png" width="72" height="72" alt="Hugging App logo">
 
-# App Design Research
+# Hugging App
 
-**Find the friction. Fix the flow.**
+Review supplied app references and turn observed problems into testable changes.
 
 Give your agent a screenshot, interface text, or app code. Get focused design
 improvements tied to the evidence, with a practical way to check each change.
 
-[Website and demo](https://patchworkmd.dev/appdesignresearch/) ·
-[Download v0.1.2](https://github.com/PatchworkMD/app-design-research/releases/tag/v0.1.2) ·
+[Public Apple catalog](https://catalog.patchworkmd.dev/) ·
+[Install v0.1.5](https://github.com/PatchworkMD/app-design-research/releases/tag/v0.1.5) ·
 [Report an issue](https://github.com/PatchworkMD/app-design-research/issues)
 
 ## What you get
@@ -20,7 +20,7 @@ improvements tied to the evidence, with a practical way to check each change.
 - iPhone-focused guidance for original SwiftUI/UIKit screens, WidgetKit widgets,
   and ActivityKit Live Activities, with exact-device runtime checks.
 
-Version 0.1.2 records each artifact's provenance, freshness, and origin, plus image
+Version 0.1.5 records each artifact's provenance, freshness, and origin, plus image
 dimensions when inspected. Reviews distinguish current evidence from historical
 or synthetic examples. Document text is treated as data, not instructions.
 
@@ -44,7 +44,7 @@ Written permission is required to change that policy.
 ## Install in Codex
 
 ```sh
-codex plugin marketplace add PatchworkMD/app-design-research --ref v0.1.2
+codex plugin marketplace add PatchworkMD/app-design-research --ref v0.1.5
 codex plugin add app-design-research@app-design-research-public
 ```
 
@@ -59,7 +59,7 @@ agent that supports SKILL.md. Neither package starts a server.
 2. Attach a screenshot you can share, paste interface text, or supply relevant code.
 3. Explain what the user is trying to do and ask:
 
-   > Use App Design Research to review this screen. Suggest three improvements.
+   > Use Hugging App to review this screen. Suggest three improvements.
    > Cite the evidence for each and tell me how to test it. Mark unseen states
    > as unverified.
 
@@ -88,10 +88,11 @@ This trial does not establish live app behavior or directory approval.
 
 ## FAQ
 
-**Does it search AppLlama or other design libraries?**
+**Does it search the public Apple catalog or AppLlama?**
 
-It reviews material you supply and can search an explicitly supplied local
-archive with `offline_corpus`. Live website access remains disabled.
+It reviews material you supply. The public Apple catalog is a companion reference
+for supplied material. It can search an explicitly supplied local archive with
+`offline_corpus`. Live website access remains disabled.
 
 **Does it change my app automatically?**
 
@@ -115,7 +116,7 @@ material where appropriate. See [Privacy](PRIVACY.md).
 
 **Is it in the ChatGPT directory?**
 
-Not yet. The GitHub release is available; directory submission is still pending.
+The ChatGPT directory has a published Hugging App listing. The latest release status is recorded in SUBMISSION.md.
 
 **Where do I report a problem?**
 

@@ -16,7 +16,7 @@ files = [(plugin / ".codex-plugin/plugin.json", ".codex-plugin/plugin.json"),
           "skills/app-design-review/references/ios-design.md"),
          (plugin / "skills/app-design-review/references/appllama-public-contract.md",
           "skills/app-design-review/references/appllama-public-contract.md"),
-         (plugin / "assets/icon.svg", "assets/icon.svg")]
+         (plugin / "assets/icon.png", "assets/icon.png")]
 files += [(root / name, name) for name in ("LICENSE", "PRIVACY.md", "TERMS.md", "SOURCES.md")]
 
 def write_archive(archive):

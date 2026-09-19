@@ -1,4 +1,4 @@
-"""Registration for the bounded AppLlama research tool."""
+"""Registration for Hugging App's bounded AppLlama compatibility tool."""
 
 from .research import TOOL_SCHEMA, app_design_research
 
@@ -12,5 +12,5 @@ def register(ctx) -> None:
         toolset="app-design-research",
         schema=TOOL_SCHEMA,
         handler=handler,
-        description="Report that AppLlama website research is disabled in this public release.",
+        description="Report that AppLlama website research is disabled in this public candidate.",
     )

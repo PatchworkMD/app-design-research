@@ -1,28 +1,29 @@
 {
   "name": "app-design-research",
-  "version": "0.1.2",
-  "description": "Portable supplied-reference app design review with disabled AppLlama network access.",
+  "version": "0.1.5",
+  "description": "Design, build, test, and prepare native iPhone apps for release with evidence-based guidance.",
   "author": {
     "name": "PatchworkMD",
     "url": "https://github.com/PatchworkMD/app-design-research"
   },
   "skills": "./skills/",
   "interface": {
-    "displayName": "App Design Research",
-    "shortDescription": "Review app design references supplied by the user.",
-    "longDescription": "A skills-only portable plugin for evidence-bounded review. Archived AppLlama browser access is disabled.",
+    "displayName": "Hugging App",
+    "shortDescription": "Build & Ship IOS Apps",
+    "longDescription": "Turn your ideas, screenshots, and code into original native iPhone apps. Get practical guidance for SwiftUI and UIKit, accessible interfaces, widgets, Live Activities, testing, and release preparation. Review up to three prioritized improvements with clear evidence and validation steps. Building and shipping use your available development tools and require your approval; this plugin does not independently publish apps or fetch third-party design libraries.",
     "developerName": "PatchworkMD",
     "category": "Productivity",
     "privacyPolicyURL": "https://github.com/PatchworkMD/app-design-research/blob/main/PRIVACY.md",
     "termsOfServiceURL": "https://github.com/PatchworkMD/app-design-research/blob/main/TERMS.md",
     "defaultPrompt": [
-      "Review the supplied app design references and propose prioritized improvements."
+      "Help me design, build, test, and prepare my iPhone app for release. Use original design and verify each step."
     ],
     "capabilities": [],
-    "composerIcon": "./assets/icon.svg",
-    "logo": "./assets/icon.svg"
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/icon.png",
+    "websiteURL": "https://catalog.patchworkmd.dev/"
   },
-  "homepage": "https://github.com/PatchworkMD/app-design-research",
+  "homepage": "https://catalog.patchworkmd.dev/",
   "repository": "https://github.com/PatchworkMD/app-design-research",
   "license": "MIT"
 }

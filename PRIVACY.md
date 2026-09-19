@@ -1,6 +1,6 @@
 # Privacy policy
 
-Effective: 2026-09-06. Applies to App Design Research v0.1.0 and v0.1.1, published by Austin Wise (individual), using the PatchworkMD brand and GitHub account. PatchworkMD is not a separate registered entity.
+Effective: 2026-09-06. Applies to Hugging App v0.1.5 and earlier App Design Research versions, published by Austin Wise (individual), using the PatchworkMD brand and GitHub account. PatchworkMD is not a separate registered entity.
 
 ## What this package does
 

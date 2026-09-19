@@ -1,6 +1,6 @@
 ---
 name: app-design-review
-description: Review supplied iOS app design evidence and guide original SwiftUI/UIKit, widget, and Live Activity work.
+description: Review supplied iOS app design evidence and guide original SwiftUI/UIKit, widget, and Live Activity work. Use when the user asks Hugging App to review supplied app references.
 ---
 
 # App Design Review
@@ -8,6 +8,19 @@ description: Review supplied iOS app design evidence and guide original SwiftUI/
 Use only screenshots, text, and source that the user supplies. Do not fetch
 websites. Do not use paid tools. Record provenance when available. Do not claim
 external sourcing when provenance is absent.
+
+Reject these patterns only when the supplied evidence supports the finding:
+
+- Generic card grids or repeated panels that weaken hierarchy or hide the next action.
+- Unsupported claims about accessibility, privacy, performance, completion, or user outcomes.
+- Tiny or low-contrast controls that fail the supplied accessibility evidence or the 44pt iOS target.
+- Gratuitous motion that adds delay, distraction, or motion-sensitivity risk without a task benefit.
+- Formulaic marketing language that obscures the action, state, limitation, or evidence.
+
+Keep at most three findings. Tie each finding to supplied evidence, state the
+observation, propose a framework-neutral change, and give one validation step.
+Do not impose these preferences when the user's brief or supplied evidence
+supports another choice. Mark unsupported checks unverified.
 
 This skill targets **iOS on iPhone**, including the project's minimum supported OS
 and current target. It does not cover iPadOS, watchOS, visionOS, macOS, or their

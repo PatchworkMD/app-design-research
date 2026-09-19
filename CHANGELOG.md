@@ -1,4 +1,15 @@
+# 0.1.5
+
+- Approved happy phone-hugging mascot shared with the catalog.
+- Build & Ship IOS Apps listing and native iPhone guidance.
+
 # Changelog
+
+## 0.1.3 candidate (unreleased)
+
+- Rename the human-facing plugin to Hugging App while retaining the stable `app-design-research` plugin and marketplace IDs.
+- Point the homepage to the companion public Apple catalog at https://catalog.patchworkmd.dev/.
+- Clarify supplied-reference review and preserve the disabled AppLlama network policy.
 
 ## 0.1.2
 

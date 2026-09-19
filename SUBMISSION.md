@@ -1,7 +1,17 @@
 # ChatGPT / Codex directory submission
 
-Status: v0.1.1 uploaded and saved as a directory draft; the portal marked the
-app-design-review skill Passed. Not submitted, approved, or listed.
+Current release: v0.1.5 prepared for upload with the approved happy mascot.
+The existing Hugging App directory listing previously published v0.1.4.
+
+The notes below preserve the historical submission preparation record.
+
+## 0.1.3 candidate (unreleased)
+
+Hugging App is the current human-facing name. The stable plugin ID and
+marketplace ID remain unchanged. Candidate metadata points to the companion
+public Apple catalog at https://catalog.patchworkmd.dev/. No publication,
+directory listing, or release URL is claimed. The candidate keeps the disabled
+AppLlama network policy and supplied-reference review boundary.
 
 Final gate: the portal requires agreement to OpenAI Terms and App Guidelines,
 compliance attestations, and confirmation that the plugin is not designed for or

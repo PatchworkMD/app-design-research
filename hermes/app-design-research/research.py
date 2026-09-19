@@ -1,4 +1,4 @@
-"""Portable App Design Research adapter with browser access disabled."""
+"""Portable Hugging App adapter with browser access disabled."""
 
 from __future__ import annotations
 
