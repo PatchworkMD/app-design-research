@@ -1,7 +1,9 @@
 # ChatGPT / Codex directory submission
 
-Current release: v0.1.5 prepared for upload with the approved happy mascot.
-The existing Hugging App directory listing previously published v0.1.4.
+Current release: v0.1.5 published on 2026-09-19 with the approved happy mascot.
+Skills scan Passed; submission Approved; portal verified Published after reload.
+Directory: https://chatgpt.com/plugins/plugins_6a9e2172a0608191ad0b9dc952483df3
+GitHub release: https://github.com/PatchworkMD/app-design-research/releases/tag/v0.1.5
 
 The notes below preserve the historical submission preparation record.
 
