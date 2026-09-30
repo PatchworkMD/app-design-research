@@ -1,6 +1,6 @@
 # Use and data acknowledgements
 
-Effective: 2026-09-06. Publisher: Austin Wise (individual), using the PatchworkMD brand and GitHub account. PatchworkMD is not a separate registered entity.
+Effective: 2026-09-06. Publisher: PatchworkMD, an individual project using the PatchworkMD GitHub account. It is not a separate registered entity.
 
 Original software and documentation are supplied under the [MIT License](LICENSE), including its warranty and liability terms. This notice does not override rights that cannot lawfully be waived.
 
