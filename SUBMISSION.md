@@ -119,8 +119,7 @@ not declarations made by this document. Publisher confirmation remains required.
 No checkbox, account, submission, or publication was changed during reconciliation.
 
 The PRIVACY.md and TERMS.md publisher clarifications were explicitly approved
-and published in commit ea9357b42ca98d7987390dd79bc647727dcd70d3. Their public
-Do not silently revert that separate approved action.
+and published in commit ea9357b42ca98d7987390dd79bc647727dcd70d3. Do not silently revert that separate approved action.
 This submission packet remains local and unpublished. The published v0.1.1
 archive and its checksum have not changed; its bundled notices retain the
 original wording. Current official submission guidance requires verified
