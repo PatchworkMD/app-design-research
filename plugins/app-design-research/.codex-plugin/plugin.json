@@ -1,7 +1,7 @@
 {
   "name": "app-design-research",
-  "version": "0.1.5",
-  "description": "Design, build, test, and prepare native iPhone apps for release with evidence-based guidance.",
+  "version": "0.1.6",
+  "description": "Review iPhone app screens, interface text, and code with evidence-backed iOS design guidance.",
   "author": {
     "name": "PatchworkMD",
     "url": "https://github.com/PatchworkMD/app-design-research"
@@ -9,14 +9,14 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Hugging App",
-    "shortDescription": "Build & Ship IOS Apps",
-    "longDescription": "Turn your ideas, screenshots, and code into original native iPhone apps. Get practical guidance for SwiftUI and UIKit, accessible interfaces, widgets, Live Activities, testing, and release preparation. Review up to three prioritized improvements with clear evidence and validation steps. Building and shipping use your available development tools and require your approval; this plugin does not independently publish apps or fetch third-party design libraries.",
+    "shortDescription": "Review iPhone app screens",
+    "longDescription": "Review iPhone app screenshots, interface text, or code. Get up to three prioritized improvements with evidence and ways to validate them. Guidance covers SwiftUI and UIKit, accessible interfaces, widgets, and Live Activities. Hugging App proposes changes; your agent implements them only when you ask. It does not fetch websites or publish apps. Your agent host processes supplied material and controls retention.",
     "developerName": "PatchworkMD",
     "category": "Productivity",
-    "privacyPolicyURL": "https://github.com/PatchworkMD/app-design-research/blob/main/PRIVACY.md",
-    "termsOfServiceURL": "https://github.com/PatchworkMD/app-design-research/blob/main/TERMS.md",
+    "privacyPolicyURL": "https://raw.githubusercontent.com/PatchworkMD/app-design-research/704274ddba326d9422b8aa3f77f863e5f7adeb1a/PRIVACY.md",
+    "termsOfServiceURL": "https://raw.githubusercontent.com/PatchworkMD/app-design-research/704274ddba326d9422b8aa3f77f863e5f7adeb1a/TERMS.md",
     "defaultPrompt": [
-      "Help me design, build, test, and prepare my iPhone app for release. Use original design and verify each step."
+      "Review this iPhone app screen or code. Give up to three evidence-backed improvements and a way to validate each."
     ],
     "capabilities": [],
     "composerIcon": "./assets/icon.png",

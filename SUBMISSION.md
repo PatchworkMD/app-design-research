@@ -5,6 +5,17 @@ Skills scan Passed; submission Approved; portal verified Published after reload.
 Directory: https://chatgpt.com/plugins/plugins_6a9e2172a0608191ad0b9dc952483df3
 GitHub release: https://github.com/PatchworkMD/app-design-research/releases/tag/v0.1.5
 
+## 0.1.6 metadata candidate (2026-09-28)
+
+The candidate updates the short description, long description, and starter prompt
+to describe supplied-reference iPhone app review. It keeps the current approved
+mascot for both logo fields and preserves the existing PatchworkMD publisher
+name, catalog URL, privacy URL, and terms URL.
+
+The OpenAI portal still shows v0.1.5 as Published. The new-version dialog offered
+only an individual publisher identity; no v0.1.6 package was uploaded. Keep this
+candidate private until PatchworkMD can be selected as the verified publisher.
+
 The notes below preserve the historical submission preparation record.
 
 ## 0.1.3 candidate (unreleased)
@@ -30,17 +41,17 @@ Short description: Review user-supplied app references and propose evidence-back
 
 Long description: Use screenshots, interface text, or code you are entitled to share to review an app's clarity, accessibility, and interaction states. Separate observed facts from suggested changes, preserve reference attribution, and produce a prioritized improvement plan. This release does not search or download third-party libraries. Its included Hermes website adapter is disabled.
 
-Legal publisher: Austin Wise (individual). PatchworkMD is the brand and GitHub account, not a separate registered entity.
+Publisher identity: PatchworkMD is the public brand and GitHub account. No separate registered entity is claimed.
 
-Portal identity gate: the previously observed selected individual identity was AUSTIN ROY WISE, while the Developer name field displayed PatchworkMD with the instruction “Must match your verified legal name or business name.” The GitHub account name does not establish the correct legal developer name. Austin rejected renaming the public Developer name to the individual legal name and requests PatchworkMD wherever permitted. Keep the draft unchanged pending OpenAI clarification on a public brand or alias for an individually verified publisher; do not imply a registered business or alter verified identity. This local record does not change the portal account or draft.
+Portal identity gate: the new-version flow offers an individual publisher identity. The Developer name must match a verified legal or business identity. Keep this submission on hold until OpenAI confirms whether PatchworkMD may be used as the public alias for an individually verified publisher. Do not imply a registered business or alter verified identity. This local record does not change the portal account or draft.
 
 Website: https://patchworkmd.dev/appdesignresearch/
 Source repository: https://github.com/PatchworkMD/app-design-research
-Support email: hello@patchworkmd.dev
+Support: https://x.com/patchworkmd
 Support issues: https://github.com/PatchworkMD/app-design-research/issues
-Email gate: the website/email owner reports Cloudflare Activity Log evidence of three received and three forwarded tests for hello, info, and contact at patchworkmd.dev. A distinct destination-inbox copy remains unverified; outbound domain sending is not configured. Forwarding evidence alone does not prove end-to-end support delivery. GitHub issues remain the public support fallback.
-Privacy: https://github.com/PatchworkMD/app-design-research/blob/main/PRIVACY.md
-Terms: https://github.com/PatchworkMD/app-design-research/blob/main/TERMS.md
+Internal email-routing details omitted. Use the public PatchworkMD support channel above.
+Privacy: https://raw.githubusercontent.com/PatchworkMD/app-design-research/704274ddba326d9422b8aa3f77f863e5f7adeb1a/PRIVACY.md
+Terms: https://raw.githubusercontent.com/PatchworkMD/app-design-research/704274ddba326d9422b8aa3f77f863e5f7adeb1a/TERMS.md
 Category: Productivity
 
 Starter prompts:
@@ -108,8 +119,7 @@ not declarations made by this document. Publisher confirmation remains required.
 No checkbox, account, submission, or publication was changed during reconciliation.
 
 The PRIVACY.md and TERMS.md publisher clarifications were explicitly approved
-and published in commit ea9357b42ca98d7987390dd79bc647727dcd70d3. Their public
-content names Austin Wise; do not silently revert that separate approved action.
+and published in commit ea9357b42ca98d7987390dd79bc647727dcd70d3. Do not silently revert that separate approved action.
 This submission packet remains local and unpublished. The published v0.1.1
 archive and its checksum have not changed; its bundled notices retain the
 original wording. Current official submission guidance requires verified
@@ -125,7 +135,7 @@ Source: https://developers.openai.com/plugins/deploy/submission
 ## Fresh explicit installed-skill visual review — 2026-09-07
 
 The current assistant explicitly read the installed v0.1.1 skill at
-/Users/austinwise/.codex/plugins/cache/app-design-research-public/app-design-research/0.1.1/skills/app-design-review/SKILL.md
+the installed v0.1.1 public package
 and applied it to two freshly captured screenshots of the user-authorized public
 App Design Research page at https://patchworkmd.dev/app-design-research.
 Screenshot acquisition was a separate authorized browser QA step; the review
@@ -134,8 +144,8 @@ The host processes these public inputs; private material should be redacted.
 
 Input inventory: current public rendered page, real website; embedded artwork is
 explicitly labeled original marketing illustration, not an app screenshot.
-- /Users/austinwise/.codex/visualizations/2026/09/05/01a06fe0-efd3-74a1-b3ec-b12cd1b84ba3/adr-public-desktop-20260907.jpg: 1280x900; SHA256 e6afb1f78ed5b00a59dfe47187b6f7425c5520f356365c70c1eab3ed69031f9c
-- /Users/austinwise/.codex/visualizations/2026/09/05/01a06fe0-efd3-74a1-b3ec-b12cd1b84ba3/adr-public-mobile-20260907.jpg: 390x844; SHA256 0c6a7428a1d72dc86b213415791122d2a1b4169ae6e0252fc1e7aaeacc6941ab
+- Desktop capture (local file retained privately): 1280x900; SHA256 e6afb1f78ed5b00a59dfe47187b6f7425c5520f356365c70c1eab3ed69031f9c
+- Mobile capture (local file retained privately): 390x844; SHA256 0c6a7428a1d72dc86b213415791122d2a1b4169ae6e0252fc1e7aaeacc6941ab
 
 Actual review output:
 
