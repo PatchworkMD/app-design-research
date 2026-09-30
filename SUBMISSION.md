@@ -50,8 +50,8 @@ Source repository: https://github.com/PatchworkMD/app-design-research
 Support: https://x.com/patchworkmd
 Support issues: https://github.com/PatchworkMD/app-design-research/issues
 Internal email-routing details omitted. Use the public PatchworkMD support channel above.
-Privacy: https://github.com/PatchworkMD/app-design-research/blob/main/PRIVACY.md
-Terms: https://github.com/PatchworkMD/app-design-research/blob/main/TERMS.md
+Privacy: https://raw.githubusercontent.com/PatchworkMD/app-design-research/704274ddba326d9422b8aa3f77f863e5f7adeb1a/PRIVACY.md
+Terms: https://raw.githubusercontent.com/PatchworkMD/app-design-research/704274ddba326d9422b8aa3f77f863e5f7adeb1a/TERMS.md
 Category: Productivity
 
 Starter prompts:
