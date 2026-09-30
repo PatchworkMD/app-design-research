@@ -1,16 +1,17 @@
-# Use and data acknowledgements
+# PatchworkMD plugin terms
 
-Effective: 2026-09-06. Publisher: Austin Wise (individual), using the PatchworkMD brand and GitHub account. PatchworkMD is not a separate registered entity.
+Effective: 2026-09-30. Publisher: PatchworkMD, the publisher's public brand. These terms apply to Hugging App, Dreamer, and Unicycle.
 
-Original software and documentation are supplied under the [MIT License](LICENSE), including its warranty and liability terms. This notice does not override rights that cannot lawfully be waived.
+Use the plugins only with material you own, have permission to use, or may otherwise lawfully process. Remove credentials and unnecessary personal or confidential data before sharing material with an AI host. The host provider's terms and privacy policy govern its processing.
 
-- Supply only references you own, have permission to use, or may otherwise lawfully use for the requested review. Public visibility alone does not establish a reuse licence.
-- Preserve source attribution. A link or credit does not grant rights to copy, redistribute, automate access, or reproduce branding.
-- Remove credentials, personal information, confidential work, and other unnecessary data before submitting material to an AI host. Host-provider terms and settings govern that processing; see [Privacy](PRIVACY.md).
-- Treat output as suggestions requiring human review. The package does not certify accessibility compliance, legal clearance, originality, or fitness for production.
-- This release provides no website scraping, AppLlama library access, private boards, paid metrics, or premium functionality. The native Hermes adapter is disabled at its public entry point. There is no supported enablement flag.
-- No permission to use another service is granted by this repository. Future integrations must separately satisfy applicable permissions and service requirements.
+Hugging App gives design suggestions about references you provide. It does not certify accessibility, originality, legal clearance, or fitness for production. It does not retrieve AppLlama content or scrape websites.
 
-AppLlama, Hermes, ChatGPT, Codex, and referenced app names belong to their respective owners. This is an independent project, not an official product or endorsement by those owners. No third-party screen library or third-party skill bundle is included. No plugin purchase is required; your AI host may have its own fees.
+Dreamer checks receipts and proposes preferences from material you select. Review each proposal and exact target preview. The sync helper writes only after you approve that preview. You are responsible for the target files you configure and for reviewing backups and restored files.
 
-Support: [GitHub issues](https://github.com/PatchworkMD/app-design-research/issues). Send only information safe for public viewing. This project is not a legal service and makes no claim of legal review.
+Unicycle coordinates existing Codex tasks through native host tools. Review the selected task, exact answer, and preview before the host routes an answer or displays content. A queued preview does not prove that a person saw it.
+
+These plugins do not provide a hosted service, background monitoring, or a ChatGPT payment feature. Your AI host or other providers may charge under their own plans. Any license supplied with a package governs reuse of that package's software and documentation. These terms do not grant rights to third-party services, content, or trademarks.
+
+The plugins provide suggestions and workflow support. They do not provide legal advice or professional certification. Review outputs and confirm actions before relying on them.
+
+For support, contact [PatchworkMD on X](https://x.com/patchworkmd). Do not send credentials or confidential material through public support channels. These terms do not limit rights that cannot lawfully be waived.

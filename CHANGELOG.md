@@ -1,3 +1,9 @@
+# 0.1.6 candidate
+
+- Replace the build-and-ship wording with the plugin's supplied-reference review workflow.
+- Clarify evidence, validation steps, iPhone scope, and user-controlled implementation.
+- Keep the approved Hugging App mascot as both the logo and composer icon.
+
 # 0.1.5
 
 - Approved happy phone-hugging mascot shared with the catalog.
