@@ -360,7 +360,12 @@ def _read_corpus_json(root: Path, name: str) -> tuple[Any, dict[str, Any], str |
     if relative.is_absolute() or ".." in relative.parts:
         return None, {}, f"Corpus file path is invalid: {name}."
     path = root / relative
-    if path.is_symlink() or not path.is_file():
+    current = root
+    for part in relative.parts:
+        current = current / part
+        if current.is_symlink():
+            return None, {}, f"Corpus path cannot contain symlinks: {name}."
+    if not path.is_file():
         return None, {}, f"Corpus is missing required file: {name}."
     try:
         if path.stat().st_size > MAX_CORPUS_FILE_BYTES:

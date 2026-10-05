@@ -118,6 +118,30 @@ class PublicAdapterTests(unittest.TestCase):
             }))
         self.assertEqual(result["access"], "invalid_request")
 
+        with TemporaryDirectory() as directory:
+            root = Path(directory).resolve()
+            (root / "assets-manifest.json").write_text(json.dumps({"assets": []}))
+            (root / "observed.json").write_text(json.dumps({"appPaths": [], "complete": False}))
+            (root / "appllama-apps-observed-20260915.json").symlink_to(root / "observed.json")
+            result = json.loads(app_design_research({
+                "operation": "offline_corpus", "task": "x", "query": "x",
+                "corpus_path": str(root),
+            }))
+        self.assertEqual(result["access"], "invalid_request")
+
+        with TemporaryDirectory() as directory:
+            base = Path(directory)
+            root, outside = base / "corpus", base / "outside"
+            root.mkdir()
+            outside.mkdir()
+            (outside / "appllama-browser-catalog-complete.json").write_text(json.dumps({"complete": True, "apps": {}}))
+            (root / "downloads").symlink_to(outside, target_is_directory=True)
+            result = json.loads(app_design_research({
+                "operation": "offline_corpus", "task": "x", "query": "x",
+                "corpus_path": str(root),
+            }))
+        self.assertEqual(result["access"], "invalid_request")
+
 
 if __name__ == "__main__":
     unittest.main()
