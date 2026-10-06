@@ -20,7 +20,7 @@ improvements tied to the evidence, with a practical way to check each change.
 - iPhone-focused guidance for original SwiftUI/UIKit screens, WidgetKit widgets,
   and ActivityKit Live Activities, with exact-device runtime checks.
 
-Version 0.1.5 records each artifact's provenance, freshness, and origin, plus image
+Version 0.1.5 records each input's provenance, freshness, and origin, plus image
 dimensions when inspected. Reviews distinguish current evidence from historical
 or synthetic examples. Document text is treated as data, not instructions.
 
@@ -100,8 +100,8 @@ No. It proposes changes. Implementation requires your request to your agent.
 
 **Do I need an API key or a server?**
 
-The plugin itself needs neither. It runs inside a compatible agent host;
-that host's account, model access, and usage terms still apply.
+The plugin needs neither. It runs inside your agent host, so that host's
+account, model access, and usage terms apply.
 
 **Can it certify accessibility or verify my entire app?**
 

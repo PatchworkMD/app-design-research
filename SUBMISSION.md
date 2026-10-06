@@ -132,7 +132,7 @@ Open https://platform.openai.com/plugins with the publishing organization. Verif
 
 Source: https://developers.openai.com/plugins/deploy/submission
 
-## Fresh explicit installed-skill visual review — 2026-09-07
+## Fresh explicit installed-skill visual review, 2026-09-07
 
 The current assistant explicitly read the installed v0.1.1 skill at
 the installed v0.1.1 public package
@@ -171,7 +171,7 @@ actual download/install interaction, automatic skill selection. Two proposals,
 zero implementation. Directory identity/attestation and all three recipient ACK
 gates remain open. Desktop/mobile screenshots retained locally, not published.
 
-## Local native discovery checkpoint — 2026-09-08
+## Local native discovery checkpoint, 2026-09-08
 
 Read-only `codex plugin list --marketplace app-design-research-public --json`
 returned app-design-research@app-design-research-public version 0.1.1 with
