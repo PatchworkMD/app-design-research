@@ -2,7 +2,7 @@
 
 Current release: v0.1.5 published on 2026-09-19 with the approved happy mascot.
 Skills scan Passed; submission Approved; portal verified Published after reload.
-Directory: https://chatgpt.com/plugins/plugins_6a9e2172a0608191ad0b9dc952483df3
+Directory: https://chatgpt.com/plugins/[redacted-id]
 GitHub release: https://github.com/PatchworkMD/app-design-research/releases/tag/v0.1.5
 
 ## 0.1.6 metadata candidate (2026-09-28)
@@ -102,7 +102,7 @@ above. The README includes the condensed example; no private trial files are bun
 
 ## Declaration review packet
 
-Draft: https://platform.openai.com/plugins/plugins_6a9e2172a0608191ad0b9dc952483df3/submissions/appsub_6a9e2172a3fc81919eadfa68cb8d81aa
+Draft: https://platform.openai.com/plugins/[redacted-id]/submissions/[redacted-id]
 
 Previously observed portal declarations (not freshly reverified on 2026-09-07;
 the exact draft tab was absent from the available browser inventory):
